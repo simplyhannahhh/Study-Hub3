@@ -617,7 +617,7 @@
                 quizCompleted: "Quizz Terminé ! Vous avez obtenu ",
                 quizOutOf: " sur ",
                 quizQ1: "Quels sont les deux principaux types de cellules ?",
-                quizA1: "Procaryotes et eucaryotes",
+                quizA1: "Procaryotes et eucariotes",
                 quizQ2: "Quel organite est connu comme la 'centrale électrique' de la cellule ?",
                 quizA2: "Mitochondrie",
                 quizQ3: "Qu'est-ce qui contrôle la croissance et la reproduction cellulaire ?",
@@ -731,258 +731,259 @@
             { qKey: 'quizQ5', aKey: 'quizA5' }
         ];
 
-        // --- Mini Quiz DOM Element References (moved to top for early access) ---
-        const quizQuestionDisplay = document.getElementById('quizQuestionDisplay'); // Element to display the current question
-        const quizAnswerInput = document.getElementById('quizAnswerInput');       // Input field for the answer
-        const quizActionButton = document.getElementById('quizActionButton');     // The dynamic button (Start/Next/Retake)
-        const quizGoBackButton = document.getElementById('quizGoBackButton');     // The new "Go Back" button
-        const quizFeedback = document.getElementById('quizFeedback');             // Area for feedback messages
-        const notesSection = document.getElementById('notes');                    // The study notes section to hide/show
-        const flashcardsSection = document.getElementById('flashcards');          // Flashcards section
-        const downloadsSection = document.getElementById('downloads');            // Downloads section
+        // Wait for the DOM to be fully loaded before accessing elements
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Mini Quiz DOM Element References (moved inside DOMContentLoaded for early access) ---
+            const quizQuestionDisplay = document.getElementById('quizQuestionDisplay'); // Element to display the current question
+            const quizAnswerInput = document.getElementById('quizAnswerInput');       // Input field for the answer
+            const quizActionButton = document.getElementById('quizActionButton');     // The dynamic button (Start/Next/Retake)
+            const quizGoBackButton = document.getElementById('quizGoBackButton');     // The new "Go Back" button
+            const quizFeedback = document.getElementById('quizFeedback');             // Area for feedback messages
+            const notesSection = document.getElementById('notes');                    // The study notes section to hide/show
+            const flashcardsSection = document.getElementById('flashcards');          // Flashcards section
+            const downloadsSection = document.getElementById('downloads');            // Downloads section
 
+            // --- Language Selector Functionality (moved inside DOMContentLoaded) ---
+            const languageSelector = document.getElementById('languageSelector');
 
-        // --- Language Selector Functionality ---
-        const languageSelector = document.getElementById('languageSelector');
+            /**
+             * Sets the language of the website by updating text content based on data-i18n attributes.
+             * It also handles special cases like placeholder text and the document title.
+             * @param {string} lang The language code (e.g., 'en', 'es', 'fr', 'de', 'it').
+             */
+            function setLanguage(lang) {
+                const currentTranslations = translations[lang];
+                if (!currentTranslations) {
+                    console.warn(`No translations found for language: ${lang}`);
+                    return;
+                }
 
-        /**
-         * Sets the language of the website by updating text content based on data-i18n attributes.
-         * It also handles special cases like placeholder text and the document title.
-         * @param {string} lang The language code (e.g., 'en', 'es', 'fr', 'de', 'it').
-         */
-        function setLanguage(lang) {
-            const currentTranslations = translations[lang];
-            if (!currentTranslations) {
-                console.warn(`No translations found for language: ${lang}`);
-                return;
-            }
-
-            // Update all elements with data-i18n attributes
-            document.querySelectorAll('[data-i18n]').forEach(element => {
-                const key = element.getAttribute('data-i18n');
-                // Check if the key exists in the current language translations
-                if (currentTranslations[key]) {
-                    // Special handling for elements with 'placeholder' attribute (like input fields)
-                    if (element.tagName === 'INPUT' && element.hasAttribute('placeholder')) {
-                        element.placeholder = currentTranslations[key];
-                    } 
-                    // Special handling for the document's title tag
-                    else if (element.tagName === 'TITLE') {
-                        document.title = currentTranslations[key];
-                    } 
-                    // For all other elements, update their text content
-                    else {
-                        element.textContent = currentTranslations[key];
+                // Update all elements with data-i18n attributes
+                document.querySelectorAll('[data-i18n]').forEach(element => {
+                    const key = element.getAttribute('data-i18n');
+                    // Check if the key exists in the current language translations
+                    if (currentTranslations[key]) {
+                        // Special handling for elements with 'placeholder' attribute (like input fields)
+                        if (element.tagName === 'INPUT' && element.hasAttribute('placeholder')) {
+                            element.placeholder = currentTranslations[key];
+                        } 
+                        // Special handling for the document's title tag
+                        else if (element.tagName === 'TITLE') {
+                            document.title = currentTranslations[key];
+                        } 
+                        // For all other elements, update their text content
+                        else {
+                            element.textContent = currentTranslations[key];
+                        }
                     }
-                }
-            });
+                });
 
-            // Update specific quiz elements that might change text dynamically
-            // (e.g., the quiz action button, which changes between "Start Quiz", "Next Question", "Retake Quiz")
-            updateQuizActionButtonText(); 
-            // Ensure the quiz question display is updated when language changes
-            if (quizActive && currentQuestionIndex < quizQuestions.length) {
-                quizQuestionDisplay.textContent = currentTranslations[quizQuestions[currentQuestionIndex].qKey];
-            } else if (!quizActive) {
-                quizQuestionDisplay.textContent = currentTranslations.quizQuestion;
+                // Update specific quiz elements that might change text dynamically
+                // (e.g., the quiz action button, which changes between "Start Quiz", "Next Question", "Retake Quiz")
+                updateQuizActionButtonText(); 
+                // Ensure the quiz question display is updated when language changes
+                if (quizActive && currentQuestionIndex < quizQuestions.length) {
+                    quizQuestionDisplay.textContent = currentTranslations[quizQuestions[currentQuestionIndex].qKey];
+                } else if (!quizActive) {
+                    quizQuestionDisplay.textContent = currentTranslations.quizQuestion;
+                }
+
+
+                // Store the selected language in local storage to remember preference
+                localStorage.setItem('selectedLanguage', lang);
             }
 
+            // --- Initial Language Setup ---
+            // Get the saved language from local storage, or default to English if none is saved
+            const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+            // Set the dropdown selector to the saved or default language
+            languageSelector.value = savedLanguage;
+            // Apply the translations for the initial language when the page loads
+            setLanguage(savedLanguage); // This call is now safe as DOM elements are ready
 
-            // Store the selected language in local storage to remember preference
-            localStorage.setItem('selectedLanguage', lang);
-        }
-
-        // --- Initial Language Setup ---
-        // Get the saved language from local storage, or default to English if none is saved
-        const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
-        // Set the dropdown selector to the saved or default language
-        languageSelector.value = savedLanguage;
-        // Apply the translations for the initial language when the page loads
-        setLanguage(savedLanguage);
-
-        // Listen for changes in the language selector dropdown
-        languageSelector.addEventListener('change', (event) => {
-            // When the user selects a new language, call setLanguage with the new value
-            setLanguage(event.target.value);
-        });
-
-
-        // --- Dark Mode Toggle Functionality ---
-        const darkModeToggle = document.getElementById('darkModeToggle');
-
-        // Add a click event listener to the dark mode button
-        darkModeToggle.addEventListener('click', () => {
-            // Toggles the 'dark' class on the <body> element.
-            // CSS rules (in the <style> block) define how the page looks when this class is present.
-            document.body.classList.toggle('dark');
-        });
-
-
-        // --- Flashcard Reveal Functionality ---
-        // Select all elements that have the class 'card' (these are our flashcards)
-        document.querySelectorAll('.card').forEach(card => {
-            // Attach a click event listener to each flashcard
-            card.addEventListener('click', () => {
-                // Find the 'answer' span within the clicked flashcard
-                const answer = card.querySelector('.answer');
-                // Toggle the display style of the answer between 'inline' (visible) and 'none' (hidden)
-                if (answer.style.display === 'inline') {
-                    answer.style.display = 'none';
-                } else {
-                    answer.style.display = 'inline';
-                }
+            // Listen for changes in the language selector dropdown
+            languageSelector.addEventListener('change', (event) => {
+                // When the user selects a new language, call setLanguage with the new value
+                setLanguage(event.target.value);
             });
-        });
 
 
-        // --- Search Functionality (Filters sections based on input) ---
-        const searchInput = document.getElementById('searchInput');
+            // --- Dark Mode Toggle Functionality ---
+            const darkModeToggle = document.getElementById('darkModeToggle');
 
-        // Listen for 'input' events, which fire every time the user types or deletes text
-        searchInput.addEventListener('input', () => {
-            // Get the search term, convert to lowercase, and remove extra whitespace
-            const searchTerm = searchInput.value.toLowerCase().trim();
-            // Select all 'section' elements on the page
-            document.querySelectorAll('section').forEach(section => {
-                // If there's a search term, filter the sections
-                if (searchTerm.length > 0) {
-                    // Check if the section's text content (lowercase) includes the search term
-                    if (section.textContent.toLowerCase().includes(searchTerm)) {
-                        section.style.display = 'block'; // Show the section if it matches
+            // Add a click event listener to the dark mode button
+            darkModeToggle.addEventListener('click', () => {
+                // Toggles the 'dark' class on the <body> element.
+                // CSS rules (in the <style> block) define how the page looks when this class is present.
+                document.body.classList.toggle('dark');
+            });
+
+
+            // --- Flashcard Reveal Functionality ---
+            // Select all elements that have the class 'card' (these are our flashcards)
+            document.querySelectorAll('.card').forEach(card => {
+                // Attach a click event listener to each flashcard
+                card.addEventListener('click', () => {
+                    // Find the 'answer' span within the clicked flashcard
+                    const answer = card.querySelector('.answer');
+                    // Toggle the display style of the answer between 'inline' (visible) and 'none' (hidden)
+                    if (answer.style.display === 'inline') {
+                        answer.style.display = 'none';
                     } else {
-                        section.style.display = 'none'; // Hide the section if it doesn't match
+                        answer.style.display = 'inline';
                     }
+                });
+            });
+
+
+            // --- Search Functionality (Filters sections based on input) ---
+            const searchInput = document.getElementById('searchInput');
+
+            // Listen for 'input' events, which fire every time the user types or deletes text
+            searchInput.addEventListener('input', () => {
+                // Get the search term, convert to lowercase, and remove extra whitespace
+                const searchTerm = searchInput.value.toLowerCase().trim();
+                // Select all 'section' elements on the page
+                document.querySelectorAll('section').forEach(section => {
+                    // If there's a search term, filter the sections
+                    if (searchTerm.length > 0) {
+                        // Check if the section's text content (lowercase) includes the search term
+                        if (section.textContent.toLowerCase().includes(searchTerm)) {
+                            section.style.display = 'block'; // Show the section if it matches
+                        } else {
+                            section.style.display = 'none'; // Hide the section if it doesn't match
+                        }
+                    } else {
+                        // If the search term is empty, show all sections
+                        section.style.display = 'block';
+                    }
+                });
+            });
+
+
+            // --- Mini Quiz Logic ---
+            
+            /**
+             * Updates the text of the main quiz action button based on the quiz state.
+             * Also controls the visibility of the "Go Back" button.
+             */
+            function updateQuizActionButtonText() {
+                const currentLang = languageSelector.value;
+                const currentTranslations = translations[currentLang];
+
+                if (!quizActive) {
+                    quizActionButton.textContent = currentTranslations.quizStartButton;
+                    quizGoBackButton.style.display = 'none'; // Hide go back button when quiz is not active
+                } else if (currentQuestionIndex < quizQuestions.length) {
+                    quizActionButton.textContent = currentTranslations.quizNextButton;
+                    quizGoBackButton.style.display = 'inline-block'; // Show go back button when quiz is active
                 } else {
-                    // If the search term is empty, show all sections
-                    section.style.display = 'block';
+                    quizActionButton.textContent = currentTranslations.quizRetakeButton;
+                    quizGoBackButton.style.display = 'inline-block'; // Show go back button after quiz completion
+                }
+            }
+
+            /**
+             * Displays the current quiz question and manages the input field and feedback area.
+             */
+            function displayCurrentQuizQuestion() {
+                const currentLang = languageSelector.value;
+                const currentTranslations = translations[currentLang];
+
+                if (currentQuestionIndex < quizQuestions.length) {
+                    // Display the current question
+                    quizQuestionDisplay.textContent = currentTranslations[quizQuestions[currentQuestionIndex].qKey];
+                    // Clear input field and feedback
+                    quizAnswerInput.value = '';
+                    quizFeedback.textContent = '';
+                    quizFeedback.className = ''; // Clear feedback styling
+                    // Ensure input is enabled
+                    quizAnswerInput.disabled = false;
+                    quizAnswerInput.style.display = 'block'; // Ensure input is visible
+                    quizAnswerInput.placeholder = currentTranslations.quizInputPlaceholder; // Update placeholder
+                } else {
+                    // Quiz completed
+                    quizQuestionDisplay.textContent = `${currentTranslations.quizCompleted} ${correctAnswersCount} ${currentTranslations.quizOutOf} ${quizQuestions.length}.`;
+                    quizAnswerInput.style.display = 'none'; // Hide input field
+                    quizAnswerInput.value = ''; // Clear input
+                    quizFeedback.textContent = ''; // Clear feedback
+                    quizFeedback.className = '';
+                    quizActionButton.textContent = currentTranslations.quizRetakeButton; // Change button to Retake Quiz
+                    notesSection.style.display = 'block'; // Show notes again after quiz
+                    flashcardsSection.style.display = 'block'; // Show flashcards again after quiz
+                    downloadsSection.style.display = 'block';   // Show downloads again after quiz
+                }
+            }
+
+            // Event listener for the dynamic quiz action button
+            quizActionButton.addEventListener('click', () => {
+                const currentLang = languageSelector.value;
+                const currentTranslations = translations[currentLang];
+
+                if (!quizActive) {
+                    // If quiz is not active (first click or retake)
+                    quizActive = true;
+                    currentQuestionIndex = 0; // Reset question index
+                    correctAnswersCount = 0;  // Reset score
+                    notesSection.style.display = 'none'; // Hide notes when quiz starts
+                    flashcardsSection.style.display = 'none'; // Hide flashcards
+                    downloadsSection.style.display = 'none';   // Hide downloads
+                    displayCurrentQuizQuestion(); // Display the first question
+                    updateQuizActionButtonText(); // Update button to "Next Question" and show Go Back
+                } else if (currentQuestionIndex < quizQuestions.length) {
+                    // If quiz is active and there are more questions, it means "Submit Answer" or "Next Question"
+                    const userAnswer = quizAnswerInput.value.trim().toLowerCase();
+                    const correctAnswerText = currentTranslations[quizQuestions[currentQuestionIndex].aKey].toLowerCase();
+
+                    if (userAnswer === correctAnswerText) {
+                        quizFeedback.textContent = currentTranslations.quizCorrect;
+                        quizFeedback.className = "text-green";
+                        correctAnswersCount++;
+                    } else {
+                        quizFeedback.textContent = `${currentTranslations.quizIncorrect} ${currentTranslations[quizQuestions[currentQuestionIndex].aKey]}.`;
+                        quizFeedback.className = "text-red";
+                    }
+
+                    currentQuestionIndex++; // Move to the next question
+                    setTimeout(() => { // Give a brief moment to see feedback before moving to next question
+                        displayCurrentQuizQuestion();
+                        updateQuizActionButtonText(); // Update button to "Next Question" or "Retake Quiz"
+                    }, 1000); // 1 second delay
+                } else {
+                    // Quiz has finished, and button is "Retake Quiz"
+                    quizActive = false; // Reset quiz state
+                    displayCurrentQuizQuestion(); // Will show "Quiz Completed" message
+                    updateQuizActionButtonText(); // Will show "Start Quiz"
                 }
             });
-        });
 
-
-        // --- Mini Quiz Logic ---
-        
-        /**
-         * Updates the text of the main quiz action button based on the quiz state.
-         * Also controls the visibility of the "Go Back" button.
-         */
-        function updateQuizActionButtonText() {
-            const currentLang = languageSelector.value;
-            const currentTranslations = translations[currentLang];
-
-            if (!quizActive) {
-                quizActionButton.textContent = currentTranslations.quizStartButton;
-                quizGoBackButton.style.display = 'none'; // Hide go back button when quiz is not active
-            } else if (currentQuestionIndex < quizQuestions.length) {
-                quizActionButton.textContent = currentTranslations.quizNextButton;
-                quizGoBackButton.style.display = 'inline-block'; // Show go back button when quiz is active
-            } else {
-                quizActionButton.textContent = currentTranslations.quizRetakeButton;
-                quizGoBackButton.style.display = 'inline-block'; // Show go back button after quiz completion
-            }
-        }
-
-        /**
-         * Displays the current quiz question and manages the input field and feedback area.
-         */
-        function displayCurrentQuizQuestion() {
-            const currentLang = languageSelector.value;
-            const currentTranslations = translations[currentLang];
-
-            if (currentQuestionIndex < quizQuestions.length) {
-                // Display the current question
-                quizQuestionDisplay.textContent = currentTranslations[quizQuestions[currentQuestionIndex].qKey];
-                // Clear input field and feedback
-                quizAnswerInput.value = '';
-                quizFeedback.textContent = '';
-                quizFeedback.className = ''; // Clear feedback styling
-                // Ensure input is enabled
-                quizAnswerInput.disabled = false;
-                quizAnswerInput.style.display = 'block'; // Ensure input is visible
-                quizAnswerInput.placeholder = currentTranslations.quizInputPlaceholder; // Update placeholder
-            } else {
-                // Quiz completed
-                quizQuestionDisplay.textContent = `${currentTranslations.quizCompleted} ${correctAnswersCount} ${currentTranslations.quizOutOf} ${quizQuestions.length}.`;
-                quizAnswerInput.style.display = 'none'; // Hide input field
-                quizAnswerInput.value = ''; // Clear input
-                quizFeedback.textContent = ''; // Clear feedback
-                quizFeedback.className = '';
-                quizActionButton.textContent = currentTranslations.quizRetakeButton; // Change button to Retake Quiz
-                notesSection.style.display = 'block'; // Show notes again after quiz
-                flashcardsSection.style.display = 'block'; // Show flashcards again after quiz
-                downloadsSection.style.display = 'block';   // Show downloads again after quiz
-            }
-        }
-
-        // Event listener for the dynamic quiz action button
-        quizActionButton.addEventListener('click', () => {
-            const currentLang = languageSelector.value;
-            const currentTranslations = translations[currentLang];
-
-            if (!quizActive) {
-                // If quiz is not active (first click or retake)
-                quizActive = true;
+            // Event listener for the new "Go Back" button
+            quizGoBackButton.addEventListener('click', () => {
+                quizActive = false; // Deactivate quiz
                 currentQuestionIndex = 0; // Reset question index
                 correctAnswersCount = 0;  // Reset score
-                notesSection.style.display = 'none'; // Hide notes when quiz starts
-                flashcardsSection.style.display = 'none'; // Hide flashcards
-                downloadsSection.style.display = 'none';   // Hide downloads
-                displayCurrentQuizQuestion(); // Display the first question
-                updateQuizActionButtonText(); // Update button to "Next Question" and show Go Back
-            } else if (currentQuestionIndex < quizQuestions.length) {
-                // If quiz is active and there are more questions, it means "Submit Answer" or "Next Question"
-                const userAnswer = quizAnswerInput.value.trim().toLowerCase();
-                const correctAnswerText = currentTranslations[quizQuestions[currentQuestionIndex].aKey].toLowerCase();
+                quizAnswerInput.value = ''; // Clear input
+                quizAnswerInput.style.display = 'block'; // Ensure input is visible for new quiz start
+                quizFeedback.textContent = ''; // Clear feedback
+                quizFeedback.className = ''; // Clear feedback styling
 
-                if (userAnswer === correctAnswerText) {
-                    quizFeedback.textContent = currentTranslations.quizCorrect;
-                    quizFeedback.className = "text-green";
-                    correctAnswersCount++;
-                } else {
-                    quizFeedback.textContent = `${currentTranslations.quizIncorrect} ${currentTranslations[quizQuestions[currentQuestionIndex].aKey]}.`;
-                    quizFeedback.className = "text-red";
-                }
+                notesSection.style.display = 'block'; // Show all sections
+                flashcardsSection.style.display = 'block';
+                downloadsSection.style.display = 'block';
+                
+                // Re-initialize quiz question display to its default prompt
+                const currentLang = languageSelector.value;
+                quizQuestionDisplay.textContent = translations[currentLang].quizQuestion;
 
-                currentQuestionIndex++; // Move to the next question
-                setTimeout(() => { // Give a brief moment to see feedback before moving to next question
-                    displayCurrentQuizQuestion();
-                    updateQuizActionButtonText(); // Update button to "Next Question" or "Retake Quiz"
-                }, 1000); // 1 second delay
-            } else {
-                // Quiz has finished, and button is "Retake Quiz"
-                quizActive = false; // Reset quiz state
-                displayCurrentQuizQuestion(); // Will show "Quiz Completed" message
-                updateQuizActionButtonText(); // Will show "Start Quiz"
-            }
-        });
-
-        // Event listener for the new "Go Back" button
-        quizGoBackButton.addEventListener('click', () => {
-            quizActive = false; // Deactivate quiz
-            currentQuestionIndex = 0; // Reset question index
-            correctAnswersCount = 0;  // Reset score
-            quizAnswerInput.value = ''; // Clear input
-            quizAnswerInput.style.display = 'block'; // Ensure input is visible for new quiz start
-            quizFeedback.textContent = ''; // Clear feedback
-            quizFeedback.className = ''; // Clear feedback styling
-
-            notesSection.style.display = 'block'; // Show all sections
-            flashcardsSection.style.display = 'block';
-            downloadsSection.style.display = 'block';
-            
-            // Re-initialize quiz question display to its default prompt
-            const currentLang = languageSelector.value;
-            quizQuestionDisplay.textContent = translations[currentLang].quizQuestion;
-
-            updateQuizActionButtonText(); // Set main button to "Start Quiz" and hide Go Back button
-        });
+                updateQuizActionButtonText(); // Set main button to "Start Quiz" and hide Go Back button
+            });
 
 
-        // Initialize button text on page load
-        updateQuizActionButtonText();
-        // Set initial quiz question display state (showing the prompt before start)
-        quizQuestionDisplay.textContent = translations[savedLanguage].quizQuestion;
-
+            // Initialize button text on page load
+            updateQuizActionButtonText();
+            // Set initial quiz question display state (showing the prompt before start)
+            quizQuestionDisplay.textContent = translations[savedLanguage].quizQuestion;
+        }); // End of DOMContentLoaded
     </script>
 </body>
 </html>
