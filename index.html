@@ -482,7 +482,10 @@
             <div class="quiz-content">
                 <p id="quizQuestionDisplay" data-i18n="quizQuestion"></p>
                 <input type="text" id="quizAnswerInput" data-i18n="quizInputPlaceholder" placeholder="Your answer" />
-                <button id="quizActionButton" data-i18n="quizStartButton">Start Quiz</button>
+                <div class="quiz-buttons">
+                    <button id="quizActionButton" data-i18n="quizStartButton">Start Quiz</button>
+                    <button id="quizGoBackButton" data-i18n="quizGoBackButton" style="display: none;">Go Back</button>
+                </div>
                 <div id="quizFeedback"></div>
             </div>
         </section>
@@ -522,6 +525,7 @@
                 quizNextButton: "Next Question",
                 quizSubmitButton: "Submit Answer", // This will be dynamic based on current state
                 quizRetakeButton: "Retake Quiz",
+                quizGoBackButton: "Go Back", // New translation for the "Go Back" button
                 quizInputPlaceholder: "Your answer",
                 quizCorrect: "Correct!",
                 quizIncorrect: "Incorrect. The answer was ",
@@ -563,6 +567,7 @@
                 quizNextButton: "Siguiente Pregunta",
                 quizSubmitButton: "Enviar Respuesta",
                 quizRetakeButton: "Volver a Intentar Cuestionario",
+                quizGoBackButton: "Volver", // New translation for the "Go Back" button
                 quizInputPlaceholder: "Tu respuesta",
                 quizCorrect: "¡Correcto!",
                 quizIncorrect: "Incorrecto. La respuesta era ",
@@ -605,6 +610,7 @@
                 quizNextButton: "Question Suivante",
                 quizSubmitButton: "Soumettre la Réponse",
                 quizRetakeButton: "Reprendre le Quizz",
+                quizGoBackButton: "Retour", // New translation for the "Go Back" button
                 quizInputPlaceholder: "Votre réponse",
                 quizCorrect: "Correct !",
                 quizIncorrect: "Incorrect. La réponse était ",
@@ -646,6 +652,7 @@
                 quizNextButton: "Nächste Frage",
                 quizSubmitButton: "Antwort absenden",
                 quizRetakeButton: "Quiz wiederholen",
+                quizGoBackButton: "Zurück", // New translation for the "Go Back" button
                 quizInputPlaceholder: "Ihre Antwort",
                 quizCorrect: "Richtig!",
                 quizIncorrect: "Falsch. Die Antwort war ",
@@ -687,6 +694,7 @@
                 quizNextButton: "Prossima Domanda",
                 quizSubmitButton: "Invia Risposta",
                 quizRetakeButton: "Riprova Quiz",
+                quizGoBackButton: "Torna indietro", // New translation for the "Go Back" button
                 quizInputPlaceholder: "La tua risposta",
                 quizCorrect: "Corretto!",
                 quizIncorrect: "Errato. La risposta era ",
@@ -719,7 +727,7 @@
             { qKey: 'quizQ1', aKey: 'quizA1' },
             { qKey: 'quizQ2', aKey: 'quizA2' },
             { qKey: 'quizQ3', aKey: 'quizA3' },
-            { qKey: 'quizQ4', aKey: 'quizQ4' },
+            { qKey: 'quizQ4', aKey: 'quizA4' },
             { qKey: 'quizQ5', aKey: 'quizA5' }
         ];
 
@@ -727,8 +735,11 @@
         const quizQuestionDisplay = document.getElementById('quizQuestionDisplay'); // Element to display the current question
         const quizAnswerInput = document.getElementById('quizAnswerInput');       // Input field for the answer
         const quizActionButton = document.getElementById('quizActionButton');     // The dynamic button (Start/Next/Retake)
+        const quizGoBackButton = document.getElementById('quizGoBackButton');     // The new "Go Back" button
         const quizFeedback = document.getElementById('quizFeedback');             // Area for feedback messages
         const notesSection = document.getElementById('notes');                    // The study notes section to hide/show
+        const flashcardsSection = document.getElementById('flashcards');          // Flashcards section
+        const downloadsSection = document.getElementById('downloads');            // Downloads section
 
 
         // --- Language Selector Functionality ---
@@ -853,6 +864,7 @@
         
         /**
          * Updates the text of the main quiz action button based on the quiz state.
+         * Also controls the visibility of the "Go Back" button.
          */
         function updateQuizActionButtonText() {
             const currentLang = languageSelector.value;
@@ -860,10 +872,13 @@
 
             if (!quizActive) {
                 quizActionButton.textContent = currentTranslations.quizStartButton;
+                quizGoBackButton.style.display = 'none'; // Hide go back button when quiz is not active
             } else if (currentQuestionIndex < quizQuestions.length) {
                 quizActionButton.textContent = currentTranslations.quizNextButton;
+                quizGoBackButton.style.display = 'inline-block'; // Show go back button when quiz is active
             } else {
                 quizActionButton.textContent = currentTranslations.quizRetakeButton;
+                quizGoBackButton.style.display = 'inline-block'; // Show go back button after quiz completion
             }
         }
 
@@ -894,6 +909,8 @@
                 quizFeedback.className = '';
                 quizActionButton.textContent = currentTranslations.quizRetakeButton; // Change button to Retake Quiz
                 notesSection.style.display = 'block'; // Show notes again after quiz
+                flashcardsSection.style.display = 'block'; // Show flashcards again after quiz
+                downloadsSection.style.display = 'block';   // Show downloads again after quiz
             }
         }
 
@@ -908,8 +925,10 @@
                 currentQuestionIndex = 0; // Reset question index
                 correctAnswersCount = 0;  // Reset score
                 notesSection.style.display = 'none'; // Hide notes when quiz starts
+                flashcardsSection.style.display = 'none'; // Hide flashcards
+                downloadsSection.style.display = 'none';   // Hide downloads
                 displayCurrentQuizQuestion(); // Display the first question
-                updateQuizActionButtonText(); // Update button to "Next Question"
+                updateQuizActionButtonText(); // Update button to "Next Question" and show Go Back
             } else if (currentQuestionIndex < quizQuestions.length) {
                 // If quiz is active and there are more questions, it means "Submit Answer" or "Next Question"
                 const userAnswer = quizAnswerInput.value.trim().toLowerCase();
@@ -936,6 +955,28 @@
                 updateQuizActionButtonText(); // Will show "Start Quiz"
             }
         });
+
+        // Event listener for the new "Go Back" button
+        quizGoBackButton.addEventListener('click', () => {
+            quizActive = false; // Deactivate quiz
+            currentQuestionIndex = 0; // Reset question index
+            correctAnswersCount = 0;  // Reset score
+            quizAnswerInput.value = ''; // Clear input
+            quizAnswerInput.style.display = 'block'; // Ensure input is visible for new quiz start
+            quizFeedback.textContent = ''; // Clear feedback
+            quizFeedback.className = ''; // Clear feedback styling
+
+            notesSection.style.display = 'block'; // Show all sections
+            flashcardsSection.style.display = 'block';
+            downloadsSection.style.display = 'block';
+            
+            // Re-initialize quiz question display to its default prompt
+            const currentLang = languageSelector.value;
+            quizQuestionDisplay.textContent = translations[currentLang].quizQuestion;
+
+            updateQuizActionButtonText(); // Set main button to "Start Quiz" and hide Go Back button
+        });
+
 
         // Initialize button text on page load
         updateQuizActionButtonText();
