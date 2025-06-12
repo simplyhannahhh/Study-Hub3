@@ -282,11 +282,16 @@
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 10px;
         }
-
+        
         #notes p {
             font-size: 1.1rem;
             color: var(--text-color);
+            margin-bottom: 1em; /* Add spacing between paragraphs */
         }
+        #notes p:last-child {
+            margin-bottom: 0; /* No margin after last paragraph */
+        }
+
 
         .quiz-content {
             background-color: var(--quiz-section-bg);
@@ -464,16 +469,20 @@
             <h2 data-i18n="notesTitle">Study Notes</h2>
             <article>
                 <h3 data-i18n="biologyNoteTitle">Biology: The Cell</h3>
-                <p data-i18n="biologyNoteContent">All living organisms are composed of cells. Cells are the basic unit of life and are the smallest structural and functional unit of an organism, typically microscopic and consisting of cytoplasm and a nucleus enclosed in a membrane. They are the building blocks of all life forms.</p>
+                <p data-i18n="biologyNoteContent1"></p>
+                <p data-i18n="biologyNoteContent2"></p>
+                <p data-i18n="biologyNoteContent3"></p>
+                <p data-i18n="biologyNoteContent4"></p>
+                <p data-i18n="biologyNoteContent5"></p>
             </article>
         </section>
 
         <section id="quiz">
             <h2 data-i18n="quizTitle">Mini Quiz</h2>
             <div class="quiz-content">
-                <p data-i18n="quizQuestion">What is the boiling point of water at standard atmospheric pressure?</p>
+                <p id="quizQuestionDisplay" data-i18n="quizQuestion"></p>
                 <input type="text" id="quizAnswerInput" data-i18n="quizInputPlaceholder" placeholder="Your answer" />
-                <button id="submitQuizAnswer" data-i18n="quizSubmitButton">Submit Answer</button>
+                <button id="quizActionButton" data-i18n="quizStartButton">Start Quiz</button>
                 <div id="quizFeedback"></div>
             </div>
         </section>
@@ -503,13 +512,31 @@
                 flashcard2Answer: "4",
                 notesTitle: "Study Notes",
                 biologyNoteTitle: "Biology: The Cell",
-                biologyNoteContent: "All living organisms are composed of cells. Cells are the basic unit of life and are the smallest structural and functional unit of an organism, typically microscopic and consisting of cytoplasm and a nucleus enclosed in a membrane. They are the building blocks of all life forms.",
+                biologyNoteContent1: "The cell is the fundamental unit of life. All living organisms, from the smallest bacteria to the largest whales, are composed of cells. Cells are the basic building blocks, and they carry out all the essential functions necessary for life, such as obtaining nutrients, converting them into energy, and reproducing.",
+                biologyNoteContent2: "There are two main types of cells: prokaryotic and eukaryotic. Prokaryotic cells are simpler and older, lacking a nucleus and other membrane-bound organelles. Bacteria and archaea are examples of prokaryotes. Eukaryotic cells, on the other hand, are more complex, possessing a true nucleus that houses their genetic material and various specialized organelles.",
+                biologyNoteContent3: "Key organelles in eukaryotic cells include the nucleus, which controls cell growth and reproduction; mitochondria, often called the 'powerhouses' of the cell, responsible for energy production (ATP); the endoplasmic reticulum (ER), involved in protein and lipid synthesis; and the Golgi apparatus, which modifies, sorts, and packages proteins and lipids.",
+                biologyNoteContent4: "The cell membrane acts as a protective barrier that regulates what enters and leaves the cell. It's composed of a lipid bilayer with embedded proteins, giving it a 'fluid mosaic' structure. This selective permeability is crucial for maintaining the cell's internal environment.",
+                biologyNoteContent5: "Cell division is a vital process. In multicellular organisms, it allows for growth and the repair of damaged tissues. In single-celled organisms, it is the primary method of reproduction. Mitosis is the most common form of cell division for growth and repair, while meiosis is specialized for sexual reproduction.",
                 quizTitle: "Mini Quiz",
-                quizQuestion: "What is the boiling point of water at standard atmospheric pressure?",
+                quizStartButton: "Start Quiz",
+                quizNextButton: "Next Question",
+                quizSubmitButton: "Submit Answer", // This will be dynamic based on current state
+                quizRetakeButton: "Retake Quiz",
                 quizInputPlaceholder: "Your answer",
-                quizSubmitButton: "Submit Answer",
                 quizCorrect: "Correct!",
-                quizIncorrect: "Incorrect. The answer is ",
+                quizIncorrect: "Incorrect. The answer was ",
+                quizCompleted: "Quiz Completed! You got ",
+                quizOutOf: " out of ",
+                quizQ1: "What are the two main types of cells?",
+                quizA1: "Prokaryotic and eukaryotic",
+                quizQ2: "Which organelle is known as the 'powerhouse' of the cell?",
+                quizA2: "Mitochondria",
+                quizQ3: "What controls cell growth and reproduction?",
+                quizA3: "Nucleus",
+                quizQ4: "What is the primary function of the cell membrane?",
+                quizA4: "Regulates what enters and leaves the cell",
+                quizQ5: "What is the most common form of cell division for growth and repair?",
+                quizA5: "Mitosis",
                 downloadsTitle: "Downloadables",
                 downloadLink: "📄 Download Sample Notes",
                 footerText: "© 2025 Study Hub"
@@ -526,13 +553,31 @@
                 flashcard2Answer: "4",
                 notesTitle: "Apuntes de Estudio",
                 biologyNoteTitle: "Biología: La Célula",
-                biologyNoteContent: "Todos los organismos vivos están compuestos por células. Las células son la unidad básica de la vida y son la unidad estructural y funcional más pequeña de un organismo, típicamente microscópicas y que consisten en citoplasma y un núcleo encerrado en una membrana. Son los bloques de construcción de todas las formas de vida.",
+                biologyNoteContent1: "La célula es la unidad fundamental de la vida. Todos los organismos vivos, desde las bacterias más pequeñas hasta las ballenas más grandes, están compuestos por células. Las células son los bloques de construcción básicos y realizan todas las funciones esenciales necesarias para la vida, como la obtención de nutrientes, su conversión en energía y la reproducción.",
+                biologyNoteContent2: "Existen dos tipos principales de células: procariotas y eucariotas. Las células procariotas son más simples y antiguas, carecen de núcleo y de otros orgánulos unidos a membranas. Las bacterias y las arqueas son ejemplos de procariotas. Las células eucariotas, por otro lado, son más complejas, poseen un núcleo verdadero que alberga su material genético y varios orgánulos especializados.",
+                biologyNoteContent3: "Los orgánulos clave en las células eucariotas incluyen el núcleo, que controla el crecimiento y la reproducción celular; las mitocondrias, a menudo llamadas las 'centrales energéticas' de la célula, responsables de la producción de energía (ATP); el retículo endoplasmático (RE), implicado en la síntesis de proteínas y lípidos; y el aparato de Golgi, que modifica, clasifica y empaqueta proteínas y lípidos.",
+                biologyNoteContent4: "La membrana celular actúa como una barrera protectora que regula lo que entra y sale de la célula. Está compuesta por una bicapa lipídica con proteínas incrustadas, lo que le da una estructura de 'mosaico fluido'. Esta permeabilidad selectiva es crucial para mantener el ambiente interno de la célula.",
+                biologyNoteContent5: "La división celular es un proceso vital. En los organismos multicelulares, permite el crecimiento y la reparación de tejidos dañados. En los organismos unicelulares, es el método principal de reproducción. La mitosis es la forma más común de división celular para el crecimiento y la reparación, mientras que la meiosis está especializada en la reproducción sexual.",
                 quizTitle: "Mini Cuestionario",
-                quizQuestion: "¿Cuál es el punto de ebullición del agua a presión atmosférica estándar?",
-                quizInputPlaceholder: "Tu respuesta",
+                quizStartButton: "Iniciar Cuestionario",
+                quizNextButton: "Siguiente Pregunta",
                 quizSubmitButton: "Enviar Respuesta",
+                quizRetakeButton: "Volver a Intentar Cuestionario",
+                quizInputPlaceholder: "Tu respuesta",
                 quizCorrect: "¡Correcto!",
-                quizIncorrect: "Incorrecto. La respuesta es ",
+                quizIncorrect: "Incorrecto. La respuesta era ",
+                quizCompleted: "¡Cuestionario Completado! Obtuviste ",
+                quizOutOf: " de ",
+                quizQ1: "¿Cuáles son los dos tipos principales de células?",
+                quizA1: "Procariotas y eucariotas",
+                quizQ2: "¿Qué orgánulo se conoce como la 'central energética' de la célula?",
+                quizA2: "Mitocondria",
+                quizQ3: "¿Qué controla el crecimiento y la reproducción celular?",
+                quizA3: "Núcleo",
+                quizQ4: "¿Cuál es la función principal de la membrana celular?",
+                quizA4: "Regula lo que entra y sale de la célula",
+                quizQ5: "¿Cuál es la forma más común de división celular para el crecimiento y la reparación?",
+                quizA5: "Mitosis",
                 downloadsTitle: "Descargables",
                 downloadLink: "📄 Descargar Apuntes de Ejemplo",
                 footerText: "© 2025 Centro de Estudio"
@@ -549,13 +594,32 @@
                 flashcard2Answer: "4",
                 notesTitle: "Notes d'Étude",
                 biologyNoteTitle: "Biologie : La Cellule",
-                biologyNoteContent: "Tous les organismes vivants sont composés de cellules. Les cellules sont l'unité de base de la vie et sont la plus petite unité structurelle et fonctionnelle d'un organisme, typiquement microscopiques et constituées d'un cytoplasme et d'un noyau enfermés dans une membrane. Elles sont les éléments constitutifs de toutes les formes de vie.",
+                biologyNoteContent1: "La cellule est l'unité fondamentale de la vie. Tous les organismes vivants, des plus petites bactéries aux plus grandes baleines, sont composés de cellules. Les cellules sont les éléments constitutifs de base et elles remplissent toutes les fonctions essentielles nécessaires à la vie, telles que l'obtention de nutriments, leur conversion en énergie et la reproduction.",
+                biologyNoteContent2: "Il existe deux principaux types de cellules : procaryotes et eucaryotes. Les cellules procaryotes sont plus simples et plus anciennes, dépourvues de noyau et d'autres organites liés à la membrane. Les bactéries et les archées sont des exemples de procaryotes. Les cellules eucaryotes, en revanche, sont plus complexes, possédant un véritable noyau qui abrite leur matériel génétique et divers organites spécialisés.",
+                biologyNoteContent3: "Les organites clés des cellules eucaryotes comprennent le noyau, qui contrôle la croissance et la reproduction cellulaire ; les mitochondries, souvent appelées les « centrales électriques » de la cellule, responsables de la production d'énergie (ATP) ; le réticulum endoplasmique (RE), impliqué dans la synthèse des protéines et des lipides ; et l'appareil de Golgi, qui modifie, trie et emballe les protéines et les lipides.",
+                biologyNoteTitle: "Biologie : La Cellule",
+                biologyNoteContent4: "La membrane cellulaire agit comme une barrière protectrice qui régule ce qui entre et sort de la cellule. Elle est composée d'une bicouche lipidique avec des protéines intégrées, lui donnant une structure en « mosaïque fluide ». Cette perméabilité sélective est cruciale pour maintenir l'environnement interne de la cellule.",
+                biologyNoteContent5: "La division cellulaire est un processus vital. Chez les organismes multicellulaires, elle permet la croissance et la réparation des tissus endommagés. Chez les organismes unicellulaires, c'est la principale méthode de reproduction. La mitose est la forme la plus courante de division cellulaire pour la croissance et la réparation, tandis que la méiose est spécialisée dans la reproduction sexuelle.",
                 quizTitle: "Mini Quizz",
-                quizQuestion: "Quel est le point d'ébullition de l'eau à pression atmosphérique normale ?",
-                quizInputPlaceholder: "Votre réponse",
+                quizStartButton: "Démarrer le Quizz",
+                quizNextButton: "Question Suivante",
                 quizSubmitButton: "Soumettre la Réponse",
+                quizRetakeButton: "Reprendre le Quizz",
+                quizInputPlaceholder: "Votre réponse",
                 quizCorrect: "Correct !",
-                quizIncorrect: "Incorrect. La réponse est ",
+                quizIncorrect: "Incorrect. La réponse était ",
+                quizCompleted: "Quizz Terminé ! Vous avez obtenu ",
+                quizOutOf: " sur ",
+                quizQ1: "Quels sont les deux principaux types de cellules ?",
+                quizA1: "Procaryotes et eucaryotes",
+                quizQ2: "Quel organite est connu comme la 'centrale électrique' de la cellule ?",
+                quizA2: "Mitochondrie",
+                quizQ3: "Qu'est-ce qui contrôle la croissance et la reproduction cellulaire ?",
+                quizA3: "Noyau",
+                quizQ4: "Quelle est la fonction principale de la membrane cellulaire ?",
+                quizA4: "Régule ce qui entre et sort de la cellule",
+                quizQ5: "Quelle est la forme la plus courante de division cellulaire pour la croissance et la réparation ?",
+                quizA5: "Mitose",
                 downloadsTitle: "Téléchargeables",
                 downloadLink: "📄 Télécharger des Notes d'Exemple",
                 footerText: "© 2025 Centre d'Étude"
@@ -572,13 +636,31 @@
                 flashcard2Answer: "4",
                 notesTitle: "Studiennotizen",
                 biologyNoteTitle: "Biologie: Die Zelle",
-                biologyNoteContent: "Alle Lebewesen bestehen aus Zellen. Zellen sind die Grundeinheit des Lebens und die kleinste strukturelle und funktionelle Einheit eines Organismus, typischerweise mikroskopisch und bestehend aus Zytoplasma und einem von einer Membran umschlossenen Zellkern. Sie sind die Bausteine aller Lebensformen.",
+                biologyNoteContent1: "Die Zelle ist die grundlegende Einheit des Lebens. Alle Lebewesen, von den kleinsten Bakterien bis zu den größten Walen, bestehen aus Zellen. Zellen sind die grundlegenden Bausteine und führen alle wesentlichen Funktionen aus, die für das Leben notwendig sind, wie die Aufnahme von Nährstoffen, deren Umwandlung in Energie und die Reproduktion.",
+                biologyNoteContent2: "Es gibt zwei Haupttypen von Zellen: Prokaryoten und Eukaryoten. Prokaryotische Zellen sind einfacher und älter, ihnen fehlen ein Zellkern und andere membranumschlossene Organellen. Bakterien und Archaeen sind Beispiele für Prokaryoten. Eukaryotische Zellen hingegen sind komplexer und besitzen einen echten Zellkern, der ihr genetisches Material beherbergt, sowie verschiedene spezialisierte Organellen.",
+                biologyNoteContent3: "Zu den Schlüsselorganellen in eukaryotischen Zellen gehören der Zellkern, der das Zellwachstum und die Reproduktion steuert; Mitochondrien, oft als 'Kraftwerke' der Zelle bezeichnet, die für die Energieproduktion (ATP) verantwortlich sind; das endoplasmatische Retikulum (ER), das an der Protein- und Lipidsynthese beteiligt ist; und der Golgi-Apparat, der Proteine und Lipide modifiziert, sortiert und verpackt.",
+                biologyNoteContent4: "Die Zellmembran fungiert als Schutzbarriere, die reguliert, was in die Zelle hinein- und herausgelangt. Sie besteht aus einer Lipiddoppelschicht mit eingelagerten Proteinen, was ihr eine 'flüssiges Mosaik'-Struktur verleiht. Diese selektive Permeabilität ist entscheidend für die Aufrechterhaltung des internen Milieus der Zelle.",
+                biologyNoteContent5: "Zellteilung ist ein lebenswichtiger Prozess. Bei mehrzelligen Organismen ermöglicht sie Wachstum und die Reparatur beschädigter Gewebe. Bei einzelligen Organismen ist sie die primäre Methode der Reproduktion. Mitose ist die häufigste Form der Zellteilung für Wachstum und Reparatur, während Meiose auf die sexuelle Reproduktion spezialisiert ist.",
                 quizTitle: "Mini-Quiz",
-                quizQuestion: "Was ist der Siedepunkt von Wasser bei normalem atmosphärischem Druck?",
-                quizInputPlaceholder: "Ihre Antwort",
+                quizStartButton: "Quiz starten",
+                quizNextButton: "Nächste Frage",
                 quizSubmitButton: "Antwort absenden",
+                quizRetakeButton: "Quiz wiederholen",
+                quizInputPlaceholder: "Ihre Antwort",
                 quizCorrect: "Richtig!",
-                quizIncorrect: "Falsch. Die Antwort ist ",
+                quizIncorrect: "Falsch. Die Antwort war ",
+                quizCompleted: "Quiz abgeschlossen! Sie haben ",
+                quizOutOf: " von ",
+                quizQ1: "Was sind die zwei Hauptzelltypen?",
+                quizA1: "Prokaryoten und Eukaryoten",
+                quizQ2: "Welches Organell ist als 'Kraftwerk' der Zelle bekannt?",
+                quizA2: "Mitochondrien",
+                quizQ3: "Was steuert Zellwachstum und Reproduktion?",
+                quizA3: "Zellkern",
+                quizQ4: "Was ist die Hauptfunktion der Zellmembran?",
+                quizA4: "Reguliert, was in die Zelle hinein- und herausgelangt",
+                quizQ5: "Was ist die häufigste Form der Zellteilung für Wachstum und Reparatur?",
+                quizA5: "Mitose",
                 downloadsTitle: "Downloads",
                 downloadLink: "📄 Beispielnotizen herunterladen",
                 footerText: "© 2025 Studienzentrum"
@@ -595,24 +677,66 @@
                 flashcard2Answer: "4",
                 notesTitle: "Appunti di Studio",
                 biologyNoteTitle: "Biologia: La Cellula",
-                biologyNoteContent: "Tutti gli organismi viventi sono composti da cellule. Le cellule sono l'unità fondamentale della vita e sono la più piccola unità strutturale e funzionale di un organismo, tipicamente microscopica e costituita da citoplasma e un nucleo racchiusi in una membrana. Sono i mattoni di tutte le forme di vita.",
+                biologyNoteContent1: "La cellula è l'unità fondamentale della vita. Tutti gli organismi viventi, dai batteri più piccoli alle balene più grandi, sono composti da cellule. Le cellule sono i mattoni di base e svolgono tutte le funzioni essenziali necessarie per la vita, come l'ottenimento di nutrienti, la loro conversione in energia e la riproduzione.",
+                biologyNoteContent2: "Esistono due tipi principali di cellule: procariotiche ed eucariotiche. Le cellule procariotiche sono più semplici e antiche, prive di nucleo e di altri organelli legati alla membrana. Batteri e archaea sono esempi di procarioti. Le cellule eucariotiche, d'altra parte, sono più complesse, possiedono un vero nucleo che ospita il loro materiale genetico e vari organelli specializzati.",
+                biologyNoteContent3: "Gli organelli chiave nelle cellule eucariotiche includono il nucleo, che controlla la crescita e la riproduzione cellulare; i mitocondri, spesso chiamati le 'centrali energetiche' della cellula, responsabili della produzione di energia (ATP); il reticolo endoplasmatico (ER), coinvolto nella sintesi di proteine e lipidi; e l'apparato di Golgi, che modifica, smista e impacchetta proteine e lipidi.",
+                biologyNoteContent4: "La membrana cellulare agisce come una barriera protettiva che regola ciò che entra ed esce dalla cellula. È composta da un doppio strato lipidico con proteine incorporate, che le conferisce una struttura a 'mosaico fluido'. Questa permeabilità selettiva è cruciale per mantenere l'ambiente interno della cellula.",
+                biologyNoteContent5: "La divisione cellulare è un processo vitale. Negli organismi multicellulari, consente la crescita e la riparazione dei tessuti danneggiati. Negli organismi unicellulari, è il metodo principale di riproduzione. La mitosi è la forma più comune di divisione cellulare per la crescita e la riparazione, mentre la meiosi è specializzata per la riproduzione sessuale.",
                 quizTitle: "Mini Quiz",
-                quizQuestion: "Qual è il punto di ebollizione dell'acqua a pressione atmosferica standard?",
-                quizInputPlaceholder: "La tua risposta",
+                quizStartButton: "Inizia Quiz",
+                quizNextButton: "Prossima Domanda",
                 quizSubmitButton: "Invia Risposta",
+                quizRetakeButton: "Riprova Quiz",
+                quizInputPlaceholder: "La tua risposta",
                 quizCorrect: "Corretto!",
-                quizIncorrect: "Errato. La risposta è ",
+                quizIncorrect: "Errato. La risposta era ",
+                quizCompleted: "Quiz Completato! Hai ottenuto ",
+                quizOutOf: " su ",
+                quizQ1: "Quali sono i due tipi principali di cellule?",
+                quizA1: "Procariotiche ed eucariotiche",
+                quizQ2: "Quale organello è conosciuto come la 'centrale energetica' della cellula?",
+                quizA2: "Mitocondri",
+                quizQ3: "Cosa controlla la crescita e la riproduzione cellulare?",
+                quizA3: "Nucleo",
+                quizQ4: "Qual è la funzione principale della membrana cellulare?",
+                quizA4: "Regola ciò che entra ed esce dalla cellula",
+                quizQ5: "Qual è la forma più comune di divisione cellulare per la crescita e la riparazione?",
+                quizA5: "Mitosi",
                 downloadsTitle: "Scaricabili",
                 downloadLink: "📄 Scarica Appunti Esempio",
                 footerText: "© 2025 Hub di Studio"
             }
         };
 
+        // --- Global Quiz Variables (moved to top for initialization) ---
+        let currentQuestionIndex = 0; // Tracks which question is currently displayed
+        let correctAnswersCount = 0;  // Tracks how many questions the user got right
+        let quizActive = false;       // State variable: true when quiz is in progress
+
+        // Define quiz questions and their correct answers
+        // Using keys that match the 'translations' object for multi-language support
+        const quizQuestions = [
+            { qKey: 'quizQ1', aKey: 'quizA1' },
+            { qKey: 'quizQ2', aKey: 'quizA2' },
+            { qKey: 'quizQ3', aKey: 'quizA3' },
+            { qKey: 'quizQ4', aKey: 'quizQ4' },
+            { qKey: 'quizQ5', aKey: 'quizA5' }
+        ];
+
+        // --- Mini Quiz DOM Element References (moved to top for early access) ---
+        const quizQuestionDisplay = document.getElementById('quizQuestionDisplay'); // Element to display the current question
+        const quizAnswerInput = document.getElementById('quizAnswerInput');       // Input field for the answer
+        const quizActionButton = document.getElementById('quizActionButton');     // The dynamic button (Start/Next/Retake)
+        const quizFeedback = document.getElementById('quizFeedback');             // Area for feedback messages
+        const notesSection = document.getElementById('notes');                    // The study notes section to hide/show
+
+
         // --- Language Selector Functionality ---
         const languageSelector = document.getElementById('languageSelector');
 
         /**
          * Sets the language of the website by updating text content based on data-i18n attributes.
+         * It also handles special cases like placeholder text and the document title.
          * @param {string} lang The language code (e.g., 'en', 'es', 'fr', 'de', 'it').
          */
         function setLanguage(lang) {
@@ -625,29 +749,49 @@
             // Update all elements with data-i18n attributes
             document.querySelectorAll('[data-i18n]').forEach(element => {
                 const key = element.getAttribute('data-i18n');
+                // Check if the key exists in the current language translations
                 if (currentTranslations[key]) {
-                    // Special handling for placeholder attribute
+                    // Special handling for elements with 'placeholder' attribute (like input fields)
                     if (element.tagName === 'INPUT' && element.hasAttribute('placeholder')) {
                         element.placeholder = currentTranslations[key];
-                    } else if (element.tagName === 'TITLE') {
+                    } 
+                    // Special handling for the document's title tag
+                    else if (element.tagName === 'TITLE') {
                         document.title = currentTranslations[key];
-                    }
-                     else {
+                    } 
+                    // For all other elements, update their text content
+                    else {
                         element.textContent = currentTranslations[key];
                     }
                 }
             });
-            // Store selected language in local storage to remember preference
+
+            // Update specific quiz elements that might change text dynamically
+            // (e.g., the quiz action button, which changes between "Start Quiz", "Next Question", "Retake Quiz")
+            updateQuizActionButtonText(); 
+            // Ensure the quiz question display is updated when language changes
+            if (quizActive && currentQuestionIndex < quizQuestions.length) {
+                quizQuestionDisplay.textContent = currentTranslations[quizQuestions[currentQuestionIndex].qKey];
+            } else if (!quizActive) {
+                quizQuestionDisplay.textContent = currentTranslations.quizQuestion;
+            }
+
+
+            // Store the selected language in local storage to remember preference
             localStorage.setItem('selectedLanguage', lang);
         }
 
-        // Set initial language based on local storage or default to 'en'
+        // --- Initial Language Setup ---
+        // Get the saved language from local storage, or default to English if none is saved
         const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
-        languageSelector.value = savedLanguage; // Set selector to saved language
-        setLanguage(savedLanguage); // Apply translations on page load
+        // Set the dropdown selector to the saved or default language
+        languageSelector.value = savedLanguage;
+        // Apply the translations for the initial language when the page loads
+        setLanguage(savedLanguage);
 
-        // Listen for language selector changes
+        // Listen for changes in the language selector dropdown
         languageSelector.addEventListener('change', (event) => {
+            // When the user selects a new language, call setLanguage with the new value
             setLanguage(event.target.value);
         });
 
@@ -655,15 +799,22 @@
         // --- Dark Mode Toggle Functionality ---
         const darkModeToggle = document.getElementById('darkModeToggle');
 
+        // Add a click event listener to the dark mode button
         darkModeToggle.addEventListener('click', () => {
+            // Toggles the 'dark' class on the <body> element.
+            // CSS rules (in the <style> block) define how the page looks when this class is present.
             document.body.classList.toggle('dark');
         });
 
 
         // --- Flashcard Reveal Functionality ---
+        // Select all elements that have the class 'card' (these are our flashcards)
         document.querySelectorAll('.card').forEach(card => {
+            // Attach a click event listener to each flashcard
             card.addEventListener('click', () => {
+                // Find the 'answer' span within the clicked flashcard
                 const answer = card.querySelector('.answer');
+                // Toggle the display style of the answer between 'inline' (visible) and 'none' (hidden)
                 if (answer.style.display === 'inline') {
                     answer.style.display = 'none';
                 } else {
@@ -673,19 +824,25 @@
         });
 
 
-        // --- Search Functionality (Filters sections) ---
+        // --- Search Functionality (Filters sections based on input) ---
         const searchInput = document.getElementById('searchInput');
 
+        // Listen for 'input' events, which fire every time the user types or deletes text
         searchInput.addEventListener('input', () => {
+            // Get the search term, convert to lowercase, and remove extra whitespace
             const searchTerm = searchInput.value.toLowerCase().trim();
+            // Select all 'section' elements on the page
             document.querySelectorAll('section').forEach(section => {
+                // If there's a search term, filter the sections
                 if (searchTerm.length > 0) {
+                    // Check if the section's text content (lowercase) includes the search term
                     if (section.textContent.toLowerCase().includes(searchTerm)) {
-                        section.style.display = 'block';
+                        section.style.display = 'block'; // Show the section if it matches
                     } else {
-                        section.style.display = 'none';
+                        section.style.display = 'none'; // Hide the section if it doesn't match
                     }
                 } else {
+                    // If the search term is empty, show all sections
                     section.style.display = 'block';
                 }
             });
@@ -693,26 +850,98 @@
 
 
         // --- Mini Quiz Logic ---
-        const quizAnswerInput = document.getElementById('quizAnswerInput');
-        const submitQuizAnswer = document.getElementById('submitQuizAnswer');
-        const quizFeedback = document.getElementById('quizFeedback');
-
-        const correctAnswer = "100°c";
-
-        submitQuizAnswer.addEventListener('click', () => {
-            const userAnswer = quizAnswerInput.value.trim().toLowerCase();
+        
+        /**
+         * Updates the text of the main quiz action button based on the quiz state.
+         */
+        function updateQuizActionButtonText() {
             const currentLang = languageSelector.value;
             const currentTranslations = translations[currentLang];
 
-            if (userAnswer === correctAnswer.toLowerCase() || userAnswer === "100c") {
-                quizFeedback.textContent = currentTranslations.quizCorrect;
-                quizFeedback.className = "text-green";
+            if (!quizActive) {
+                quizActionButton.textContent = currentTranslations.quizStartButton;
+            } else if (currentQuestionIndex < quizQuestions.length) {
+                quizActionButton.textContent = currentTranslations.quizNextButton;
             } else {
-                quizFeedback.textContent = currentTranslations.quizIncorrect + correctAnswer + ".";
-                quizFeedback.className = "text-red";
+                quizActionButton.textContent = currentTranslations.quizRetakeButton;
             }
-            quizAnswerInput.value = '';
+        }
+
+        /**
+         * Displays the current quiz question and manages the input field and feedback area.
+         */
+        function displayCurrentQuizQuestion() {
+            const currentLang = languageSelector.value;
+            const currentTranslations = translations[currentLang];
+
+            if (currentQuestionIndex < quizQuestions.length) {
+                // Display the current question
+                quizQuestionDisplay.textContent = currentTranslations[quizQuestions[currentQuestionIndex].qKey];
+                // Clear input field and feedback
+                quizAnswerInput.value = '';
+                quizFeedback.textContent = '';
+                quizFeedback.className = ''; // Clear feedback styling
+                // Ensure input is enabled
+                quizAnswerInput.disabled = false;
+                quizAnswerInput.style.display = 'block'; // Ensure input is visible
+                quizAnswerInput.placeholder = currentTranslations.quizInputPlaceholder; // Update placeholder
+            } else {
+                // Quiz completed
+                quizQuestionDisplay.textContent = `${currentTranslations.quizCompleted} ${correctAnswersCount} ${currentTranslations.quizOutOf} ${quizQuestions.length}.`;
+                quizAnswerInput.style.display = 'none'; // Hide input field
+                quizAnswerInput.value = ''; // Clear input
+                quizFeedback.textContent = ''; // Clear feedback
+                quizFeedback.className = '';
+                quizActionButton.textContent = currentTranslations.quizRetakeButton; // Change button to Retake Quiz
+                notesSection.style.display = 'block'; // Show notes again after quiz
+            }
+        }
+
+        // Event listener for the dynamic quiz action button
+        quizActionButton.addEventListener('click', () => {
+            const currentLang = languageSelector.value;
+            const currentTranslations = translations[currentLang];
+
+            if (!quizActive) {
+                // If quiz is not active (first click or retake)
+                quizActive = true;
+                currentQuestionIndex = 0; // Reset question index
+                correctAnswersCount = 0;  // Reset score
+                notesSection.style.display = 'none'; // Hide notes when quiz starts
+                displayCurrentQuizQuestion(); // Display the first question
+                updateQuizActionButtonText(); // Update button to "Next Question"
+            } else if (currentQuestionIndex < quizQuestions.length) {
+                // If quiz is active and there are more questions, it means "Submit Answer" or "Next Question"
+                const userAnswer = quizAnswerInput.value.trim().toLowerCase();
+                const correctAnswerText = currentTranslations[quizQuestions[currentQuestionIndex].aKey].toLowerCase();
+
+                if (userAnswer === correctAnswerText) {
+                    quizFeedback.textContent = currentTranslations.quizCorrect;
+                    quizFeedback.className = "text-green";
+                    correctAnswersCount++;
+                } else {
+                    quizFeedback.textContent = `${currentTranslations.quizIncorrect} ${currentTranslations[quizQuestions[currentQuestionIndex].aKey]}.`;
+                    quizFeedback.className = "text-red";
+                }
+
+                currentQuestionIndex++; // Move to the next question
+                setTimeout(() => { // Give a brief moment to see feedback before moving to next question
+                    displayCurrentQuizQuestion();
+                    updateQuizActionButtonText(); // Update button to "Next Question" or "Retake Quiz"
+                }, 1000); // 1 second delay
+            } else {
+                // Quiz has finished, and button is "Retake Quiz"
+                quizActive = false; // Reset quiz state
+                displayCurrentQuizQuestion(); // Will show "Quiz Completed" message
+                updateQuizActionButtonText(); // Will show "Start Quiz"
+            }
         });
+
+        // Initialize button text on page load
+        updateQuizActionButtonText();
+        // Set initial quiz question display state (showing the prompt before start)
+        quizQuestionDisplay.textContent = translations[savedLanguage].quizQuestion;
+
     </script>
 </body>
 </html>
