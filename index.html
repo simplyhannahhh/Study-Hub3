@@ -126,27 +126,6 @@
             box-shadow: 0 6px 12px rgba(0,0,0,0.35);
         }
 
-        /* NEW CSS for the Go Back button */
-        #quizGoBackButton {
-            margin-top: 15px; /* Add some space above it */
-            background-color: #6c757d; /* A neutral color */
-            color: white;
-        }
-
-        #quizGoBackButton:hover {
-            background-color: #5a6268;
-        }
-
-        body.dark #quizGoBackButton {
-            background-color: #adb5bd; /* Lighter color for dark mode */
-            color: #212529;
-        }
-
-        body.dark #quizGoBackButton:hover {
-            background-color: #9098a1;
-        }
-        /* END NEW CSS */
-
         input[type="text"] {
             padding: 12px 20px;
             font-size: 1.05rem;
@@ -504,7 +483,7 @@
                 <p id="quizQuestionDisplay" data-i18n="quizQuestion"></p>
                 <input type="text" id="quizAnswerInput" data-i18n="quizInputPlaceholder" placeholder="Your answer" />
                 <button id="quizActionButton" data-i18n="quizStartButton">Start Quiz</button>
-                <button id="quizGoBackButton" style="display: none;" data-i18n="quizGoBackButton">Go Back</button> <div id="quizFeedback"></div>
+                <div id="quizFeedback"></div>
             </div>
         </section>
 
@@ -555,13 +534,12 @@
                 quizQ3: "What controls cell growth and reproduction?",
                 quizA3: "Nucleus",
                 quizQ4: "What is the primary function of the cell membrane?",
-                quizA4: "Regulates what enters and leaves the cell",
+                quizA4: "Protection",
                 quizQ5: "What is the most common form of cell division for growth and repair?",
                 quizA5: "Mitosis",
                 downloadsTitle: "Downloadables",
                 downloadLink: "📄 Download Sample Notes",
-                footerText: "© 2025 Study Hub",
-                quizGoBackButton: "Go Back" // NEW TRANSLATION
+                footerText: "© 2025 Study Hub"
             },
             es: {
                 pageTitle: "Centro de Estudio",
@@ -602,8 +580,7 @@
                 quizA5: "Mitosis",
                 downloadsTitle: "Descargables",
                 downloadLink: "📄 Descargar Apuntes de Ejemplo",
-                footerText: "© 2025 Centro de Estudio",
-                quizGoBackButton: "Volver" // NEW TRANSLATION
+                footerText: "© 2025 Centro de Estudio"
             },
             fr: {
                 pageTitle: "Centre d'Étude",
@@ -620,6 +597,7 @@
                 biologyNoteContent1: "La cellule est l'unité fondamentale de la vie. Tous les organismes vivants, des plus petites bactéries aux plus grandes baleines, sont composés de cellules. Les cellules sont les éléments constitutifs de base et elles remplissent toutes les fonctions essentielles nécessaires à la vie, telles que l'obtention de nutriments, leur conversion en énergie et la reproduction.",
                 biologyNoteContent2: "Il existe deux principaux types de cellules : procaryotes et eucaryotes. Les cellules procaryotes sont plus simples et plus anciennes, dépourvues de noyau et d'autres organites liés à la membrane. Les bactéries et les archées sont des exemples de procaryotes. Les cellules eucaryotes, en revanche, sont plus complexes, possédant un véritable noyau qui abrite leur matériel génétique et divers organites spécialisés.",
                 biologyNoteContent3: "Les organites clés des cellules eucaryotes comprennent le noyau, qui contrôle la croissance et la reproduction cellulaire ; les mitochondries, souvent appelées les « centrales électriques » de la cellule, responsables de la production d'énergie (ATP) ; le réticulum endoplasmique (RE), impliqué dans la synthèse des protéines et des lipides ; et l'appareil de Golgi, qui modifie, trie et emballe les protéines et les lipides.",
+                biologyNoteTitle: "Biologie : La Cellule",
                 biologyNoteContent4: "La membrane cellulaire agit comme une barrière protectrice qui régule ce qui entre et sort de la cellule. Elle est composée d'une bicouche lipidique avec des protéines intégrées, lui donnant une structure en « mosaïque fluide ». Cette perméabilité sélective est cruciale pour maintenir l'environnement interne de la cellule.",
                 biologyNoteContent5: "La division cellulaire est un processus vital. Chez les organismes multicellulaires, elle permet la croissance et la réparation des tissus endommagés. Chez les organismes unicellulaires, c'est la principale méthode de reproduction. La mitose est la forme la plus courante de division cellulaire pour la croissance et la réparation, tandis que la méiose est spécialisée dans la reproduction sexuelle.",
                 quizTitle: "Mini Quizz",
@@ -644,8 +622,7 @@
                 quizA5: "Mitose",
                 downloadsTitle: "Téléchargeables",
                 downloadLink: "📄 Télécharger des Notes d'Exemple",
-                footerText: "© 2025 Centre d'Étude",
-                quizGoBackButton: "Retour" // NEW TRANSLATION
+                footerText: "© 2025 Centre d'Étude"
             },
             de: {
                 pageTitle: "Studienzentrum",
@@ -663,11 +640,11 @@
                 biologyNoteContent2: "Es gibt zwei Haupttypen von Zellen: Prokaryoten und Eukaryoten. Prokaryotische Zellen sind einfacher und älter, ihnen fehlen ein Zellkern und andere membranumschlossene Organellen. Bakterien und Archaeen sind Beispiele für Prokaryoten. Eukaryotische Zellen hingegen sind komplexer und besitzen einen echten Zellkern, der ihr genetisches Material beherbergt, sowie verschiedene spezialisierte Organellen.",
                 biologyNoteContent3: "Zu den Schlüsselorganellen in eukaryotischen Zellen gehören der Zellkern, der das Zellwachstum und die Reproduktion steuert; Mitochondrien, oft als 'Kraftwerke' der Zelle bezeichnet, die für die Energieproduktion (ATP) verantwortlich sind; das endoplasmatische Retikulum (ER), das an der Protein- und Lipidsynthese beteiligt ist; und der Golgi-Apparat, der Proteine und Lipide modifiziert, sortiert und verpackt.",
                 biologyNoteContent4: "Die Zellmembran fungiert als Schutzbarriere, die reguliert, was in die Zelle hinein- und herausgelangt. Sie besteht aus einer Lipiddoppelschicht mit eingelagerten Proteinen, was ihr eine 'flüssiges Mosaik'-Struktur verleiht. Diese selektive Permeabilität ist entscheidend für die Aufrechterhaltung des internen Milieus der Zelle.",
-                biologyNoteContent5: "Zellteilung ist ein lebenswichtiger Prozess. Bei mehrzelligen Organismen ermöglicht sie Wachstum und die Reparatur beschädigter Gewebe. Bei einzelligen Organismen ist sie die primäre Methode der Reproduktion. Mitose ist die häufigste Form der Zellteilung für Wachstum und Reparatur, während Meiose auf sexuelle Reproduktion spezialisiert ist.",
-                quizTitle: "Mini Quiz",
+                biologyNoteContent5: "Zellteilung ist ein lebenswichtiger Prozess. Bei mehrzelligen Organismen ermöglicht sie Wachstum und die Reparatur beschädigter Gewebe. Bei einzelligen Organismen ist sie die primäre Methode der Reproduktion. Mitose ist die häufigste Form der Zellteilung für Wachstum und Reparatur, während Meiose auf die sexuelle Reproduktion spezialisiert ist.",
+                quizTitle: "Mini-Quiz",
                 quizStartButton: "Quiz starten",
                 quizNextButton: "Nächste Frage",
-                quizSubmitButton: "Antwort senden",
+                quizSubmitButton: "Antwort absenden",
                 quizRetakeButton: "Quiz wiederholen",
                 quizInputPlaceholder: "Ihre Antwort",
                 quizCorrect: "Richtig!",
@@ -678,7 +655,7 @@
                 quizA1: "Prokaryoten und Eukaryoten",
                 quizQ2: "Welches Organell ist als 'Kraftwerk' der Zelle bekannt?",
                 quizA2: "Mitochondrien",
-                quizQ3: "Was steuert Zellwachstum und -reproduktion?",
+                quizQ3: "Was steuert Zellwachstum und Reproduktion?",
                 quizA3: "Zellkern",
                 quizQ4: "Was ist die Hauptfunktion der Zellmembran?",
                 quizA4: "Reguliert, was in die Zelle hinein- und herausgelangt",
@@ -686,25 +663,24 @@
                 quizA5: "Mitose",
                 downloadsTitle: "Downloads",
                 downloadLink: "📄 Beispielnotizen herunterladen",
-                footerText: "© 2025 Studienzentrum",
-                quizGoBackButton: "Zurück" // NEW TRANSLATION
+                footerText: "© 2025 Studienzentrum"
             },
             it: {
-                pageTitle: "Centro di Studio",
-                appTitle: "📚 Centro di Studio",
+                pageTitle: "Hub di Studio",
+                appTitle: "📚 Hub di Studio",
                 darkModeButton: "Modalità Scura",
                 searchInputPlaceholder: "Cerca risorse...",
-                flashcardsTitle: "Flashcard",
+                flashcardsTitle: "Schede Didattiche",
                 flashcard1Question: "Qual è la capitale della Francia?",
                 flashcard1Answer: "Parigi",
                 flashcard2Question: "2 + 2 = ?",
                 flashcard2Answer: "4",
                 notesTitle: "Appunti di Studio",
                 biologyNoteTitle: "Biologia: La Cellula",
-                biologyNoteContent1: "La cellula è l'unità fondamentale della vita. Tutti gli organismi viventi, dai batteri più piccoli alle balene più grandi, sono composti da cellule. Le cellule sono i blocchi costruttivi di base e svolgono tutte le funzioni essenziali necessarie per la vita, come ottenere nutrienti, convertirli in energia e riprodursi.",
-                biologyNoteContent2: "Esistono due tipi principali di cellule: procariotiche ed eucariotiche. Le cellule procariotiche sono più semplici e antiche, prive di nucleo e di altri organelli legati alla membrana. Batteri e archei sono esempi di procarioti. Le cellule eucariotiche, d'altra parte, sono più complesse, possiedono un vero nucleo che ospita il loro materiale genetico e vari organelli specializzati.",
-                biologyNoteContent3: "Gli organelli chiave nelle cellule eucariotiche includono il nucleo, che controlla la crescita e la riproduzione cellulare; i mitocondri, spesso chiamati le 'centrali energetiche' della cellula, responsabili della produzione di energia (ATP); il reticolo endoplasmatico (RE), coinvolto nella sintesi di proteine e lipidi; e l'apparato di Golgi, che modifica, smista e impacchetta proteine e lipidi.",
-                biologyNoteContent4: "La membrana cellulare agisce come una barriera protettiva che regola ciò che entra ed esce dalla cellula. È composta da un doppio strato lipidico con proteine incorporate, conferendole una struttura a 'mosaico fluido'. Questa permeabilità selettiva è cruciale per mantenere l'ambiente interno della cellula.",
+                biologyNoteContent1: "La cellula è l'unità fondamentale della vita. Tutti gli organismi viventi, dai batteri più piccoli alle balene più grandi, sono composti da cellule. Le cellule sono i mattoni di base e svolgono tutte le funzioni essenziali necessarie per la vita, come l'ottenimento di nutrienti, la loro conversione in energia e la riproduzione.",
+                biologyNoteContent2: "Esistono due tipi principali di cellule: procariotiche ed eucariotiche. Le cellule procariotiche sono più semplici e antiche, prive di nucleo e di altri organelli legati alla membrana. Batteri e archaea sono esempi di procarioti. Le cellule eucariotiche, d'altra parte, sono più complesse, possiedono un vero nucleo che ospita il loro materiale genetico e vari organelli specializzati.",
+                biologyNoteContent3: "Gli organelli chiave nelle cellule eucariotiche includono il nucleo, che controlla la crescita e la riproduzione cellulare; i mitocondri, spesso chiamati le 'centrali energetiche' della cellula, responsabili della produzione di energia (ATP); il reticolo endoplasmatico (ER), coinvolto nella sintesi di proteine e lipidi; e l'apparato di Golgi, che modifica, smista e impacchetta proteine e lipidi.",
+                biologyNoteContent4: "La membrana cellulare agisce come una barriera protettiva che regola ciò che entra ed esce dalla cellula. È composta da un doppio strato lipidico con proteine incorporate, che le conferisce una struttura a 'mosaico fluido'. Questa permeabilità selettiva è cruciale per mantenere l'ambiente interno della cellula.",
                 biologyNoteContent5: "La divisione cellulare è un processo vitale. Negli organismi multicellulari, consente la crescita e la riparazione dei tessuti danneggiati. Negli organismi unicellulari, è il metodo principale di riproduzione. La mitosi è la forma più comune di divisione cellulare per la crescita e la riparazione, mentre la meiosi è specializzata per la riproduzione sessuale.",
                 quizTitle: "Mini Quiz",
                 quizStartButton: "Inizia Quiz",
@@ -713,12 +689,12 @@
                 quizRetakeButton: "Riprova Quiz",
                 quizInputPlaceholder: "La tua risposta",
                 quizCorrect: "Corretto!",
-                quizIncorrect: "Non corretto. La risposta era ",
-                quizCompleted: "Quiz Completato! Hai totalizzato ",
+                quizIncorrect: "Errato. La risposta era ",
+                quizCompleted: "Quiz Completato! Hai ottenuto ",
                 quizOutOf: " su ",
                 quizQ1: "Quali sono i due tipi principali di cellule?",
                 quizA1: "Procariotiche ed eucariotiche",
-                quizQ2: "Quale organello è conosciuto come la 'centrali energetica' della cellula?",
+                quizQ2: "Quale organello è conosciuto come la 'centrale energetica' della cellula?",
                 quizA2: "Mitocondri",
                 quizQ3: "Cosa controlla la crescita e la riproduzione cellulare?",
                 quizA3: "Nucleo",
@@ -727,293 +703,245 @@
                 quizQ5: "Qual è la forma più comune di divisione cellulare per la crescita e la riparazione?",
                 quizA5: "Mitosi",
                 downloadsTitle: "Scaricabili",
-                downloadLink: "📄 Scarica Appunti di Esempio",
-                footerText: "© 2025 Centro di Studio",
-                quizGoBackButton: "Torna Indietro" // NEW TRANSLATION
+                downloadLink: "📄 Scarica Appunti Esempio",
+                footerText: "© 2025 Hub di Studio"
             }
         };
 
-        // --- DOM Elements ---
-        const body = document.body;
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const languageSelector = document.getElementById('languageSelector');
-        const searchInput = document.getElementById('searchInput');
+        // --- Global Quiz Variables (moved to top for initialization) ---
+        let currentQuestionIndex = 0; // Tracks which question is currently displayed
+        let correctAnswersCount = 0;  // Tracks how many questions the user got right
+        let quizActive = false;       // State variable: true when quiz is in progress
 
-        const flashcardsSection = document.getElementById('flashcards');
-        const notesSection = document.getElementById('notes');
-        const quizSection = document.getElementById('quiz');
-        const downloadsSection = document.getElementById('downloads');
-
-        const flashcardElements = document.querySelectorAll('.card');
-
-        const quizQuestionDisplay = document.getElementById('quizQuestionDisplay');
-        const quizAnswerInput = document.getElementById('quizAnswerInput');
-        const quizActionButton = document.getElementById('quizActionButton');
-        const quizFeedback = document.getElementById('quizFeedback');
-        const quizGoBackButton = document.getElementById('quizGoBackButton'); // Get the new button
-
-        // --- State Variables ---
-        let currentLanguage = localStorage.getItem('language') || 'en';
-        let isDarkMode = localStorage.getItem('darkMode') === 'true';
-
+        // Define quiz questions and their correct answers
+        // Using keys that match the 'translations' object for multi-language support
         const quizQuestions = [
-            { questionKey: 'quizQ1', answerKey: 'quizA1' },
-            { questionKey: 'quizQ2', answerKey: 'quizA2' },
-            { questionKey: 'quizQ3', answerKey: 'quizA3' },
-            { questionKey: 'quizQ4', answerKey: 'quizA4' },
-            { questionKey: 'quizQ5', answerKey: 'quizA5' }
+            { qKey: 'quizQ1', aKey: 'quizA1' },
+            { qKey: 'quizQ2', aKey: 'quizA2' },
+            { qKey: 'quizQ3', aKey: 'quizA3' },
+            { qKey: 'quizQ4', aKey: 'quizQ4' },
+            { qKey: 'quizQ5', aKey: 'quizA5' }
         ];
-        let currentQuizQuestionIndex = 0;
-        let score = 0;
-        let quizActive = false; // Track if the quiz is currently running
 
-        // --- Functions ---
+        // --- Mini Quiz DOM Element References (moved to top for early access) ---
+        const quizQuestionDisplay = document.getElementById('quizQuestionDisplay'); // Element to display the current question
+        const quizAnswerInput = document.getElementById('quizAnswerInput');       // Input field for the answer
+        const quizActionButton = document.getElementById('quizActionButton');     // The dynamic button (Start/Next/Retake)
+        const quizFeedback = document.getElementById('quizFeedback');             // Area for feedback messages
+        const notesSection = document.getElementById('notes');                    // The study notes section to hide/show
 
-        function applyTheme() {
-            if (isDarkMode) {
-                body.classList.add('dark');
-                darkModeToggle.textContent = translations[currentLanguage].darkModeButton.replace('Dark Mode', 'Light Mode'); // Update button text
-            } else {
-                body.classList.remove('dark');
-                darkModeToggle.textContent = translations[currentLanguage].darkModeButton;
-            }
-        }
 
+        // --- Language Selector Functionality ---
+        const languageSelector = document.getElementById('languageSelector');
+
+        /**
+         * Sets the language of the website by updating text content based on data-i18n attributes.
+         * It also handles special cases like placeholder text and the document title.
+         * @param {string} lang The language code (e.g., 'en', 'es', 'fr', 'de', 'it').
+         */
         function setLanguage(lang) {
-            currentLanguage = lang;
-            localStorage.setItem('language', lang);
-            document.querySelector('[data-i18n="pageTitle"]').textContent = translations[lang].pageTitle;
-            document.querySelector('[data-i18n="appTitle"]').textContent = translations[lang].appTitle;
-            document.querySelector('[data-i18n="darkModeButton"]').textContent = isDarkMode ? translations[lang].darkModeButton.replace('Dark Mode', 'Light Mode') : translations[lang].darkModeButton;
-            document.querySelector('[data-i18n="searchInputPlaceholder"]').setAttribute('placeholder', translations[lang].searchInputPlaceholder);
-            document.querySelector('[data-i18n="flashcardsTitle"]').textContent = translations[lang].flashcardsTitle;
-            document.querySelector('[data-i18n="flashcard1Question"]').textContent = translations[lang].flashcard1Question;
-            document.querySelector('[data-i18n="flashcard1Answer"]').textContent = translations[lang].flashcard1Answer;
-            document.querySelector('[data-i18n="flashcard2Question"]').textContent = translations[lang].flashcard2Question;
-            document.querySelector('[data-i18n="flashcard2Answer"]').textContent = translations[lang].flashcard2Answer;
-            document.querySelector('[data-i18n="notesTitle"]').textContent = translations[lang].notesTitle;
-            document.querySelector('[data-i18n="biologyNoteTitle"]').textContent = translations[lang].biologyNoteTitle;
-            document.querySelector('[data-i18n="biologyNoteContent1"]').textContent = translations[lang].biologyNoteContent1;
-            document.querySelector('[data-i18n="biologyNoteContent2"]').textContent = translations[lang].biologyNoteContent2;
-            document.querySelector('[data-i18n="biologyNoteContent3"]').textContent = translations[lang].biologyNoteContent3;
-            document.querySelector('[data-i18n="biologyNoteContent4"]').textContent = translations[lang].biologyNoteContent4;
-            document.querySelector('[data-i18n="biologyNoteContent5"]').textContent = translations[lang].biologyNoteContent5;
-            document.querySelector('[data-i18n="quizTitle"]').textContent = translations[lang].quizTitle;
-            document.querySelector('[data-i18n="quizInputPlaceholder"]').setAttribute('placeholder', translations[lang].quizInputPlaceholder);
-            document.querySelector('[data-i18n="downloadsTitle"]').textContent = translations[lang].downloadsTitle;
-            document.querySelector('[data-i18n="downloadLink"]').textContent = translations[lang].downloadLink;
-            document.querySelector('[data-i18n="footerText"]').textContent = translations[lang].footerText;
-
-            // Update quiz button text based on quiz state
-            if (quizActive) {
-                quizActionButton.textContent = translations[lang].quizSubmitButton;
-            } else {
-                quizActionButton.textContent = translations[lang].quizStartButton;
-            }
-            // Update quiz question if quiz is active
-            if (quizActive && currentQuizQuestionIndex < quizQuestions.length) {
-                quizQuestionDisplay.textContent = translations[lang][quizQuestions[currentQuizQuestionIndex].questionKey];
-            } else if (quizActive && currentQuizQuestionIndex >= quizQuestions.length) {
-                 // This case handles the "Quiz Completed" state
-                quizQuestionDisplay.textContent = `${translations[lang].quizCompleted} ${score} ${translations[lang].quizOutOf} ${quizQuestions.length}.`;
-                quizActionButton.textContent = translations[lang].quizRetakeButton;
-            } else {
-                quizQuestionDisplay.textContent = ""; // Clear question if not in quiz
-            }
-
-            quizGoBackButton.textContent = translations[lang].quizGoBackButton; // Update go back button text
-        }
-
-        // NEW FUNCTION: Toggles visibility of quiz elements
-        function showQuizElements(show) {
-            quizQuestionDisplay.style.display = show ? 'block' : 'none';
-            quizAnswerInput.style.display = show ? 'block' : 'none';
-            quizFeedback.style.display = show ? 'flex' : 'none'; // Keep as flex for centering
-            quizActionButton.style.display = show ? 'block' : 'none';
-            quizGoBackButton.style.display = show ? 'block' : 'none'; // Show/hide the go back button
-        }
-
-        // NEW FUNCTION: Shows all main content sections
-        function showAllSections() {
-            flashcardsSection.style.display = 'block';
-            notesSection.style.display = 'block';
-            quizSection.style.display = 'block';
-            downloadsSection.style.display = 'block';
-        }
-
-        // NEW FUNCTION: Hides all sections except the quiz
-        function hideAllSectionsExceptQuiz() {
-            flashcardsSection.style.display = 'none';
-            notesSection.style.display = 'none';
-            downloadsSection.style.display = 'none';
-        }
-
-
-        function startQuiz() {
-            quizActive = true;
-            currentQuizQuestionIndex = 0;
-            score = 0;
-            quizFeedback.textContent = '';
-            quizAnswerInput.value = '';
-            quizAnswerInput.classList.remove('text-green', 'text-red');
-            quizFeedback.classList.remove('text-green', 'text-red');
-
-            hideAllSectionsExceptQuiz(); // Hide other sections
-            showQuizElements(true); // Show quiz specific elements
-            // quizGoBackButton.style.display = 'block'; // This is now handled by showQuizElements(true)
-
-            displayQuizQuestion();
-            quizActionButton.textContent = translations[currentLanguage].quizSubmitButton;
-            quizAnswerInput.focus();
-        }
-
-        function displayQuizQuestion() {
-            if (currentQuizQuestionIndex < quizQuestions.length) {
-                const questionKey = quizQuestions[currentQuizQuestionIndex].questionKey;
-                quizQuestionDisplay.textContent = translations[currentLanguage][questionKey];
-                quizAnswerInput.value = ''; // Clear previous answer
-                quizFeedback.textContent = ''; // Clear feedback
-                quizFeedback.classList.remove('text-green', 'text-red');
-                quizAnswerInput.style.backgroundColor = 'var(--input-bg)'; // Reset input background
-                quizAnswerInput.focus();
-                quizActionButton.textContent = translations[currentLanguage].quizSubmitButton; // Ensure button says Submit
-            } else {
-                endQuiz();
-            }
-        }
-
-        function checkQuizAnswer() {
-            if (currentQuizQuestionIndex >= quizQuestions.length) {
-                // This means the quiz has ended and the button now says "Retake Quiz"
-                startQuiz();
+            const currentTranslations = translations[lang];
+            if (!currentTranslations) {
+                console.warn(`No translations found for language: ${lang}`);
                 return;
             }
 
-            const userAnswer = quizAnswerInput.value.trim().toLowerCase();
-            const correctAnswerKey = quizQuestions[currentQuizQuestionIndex].answerKey;
-            const correctAnswer = translations[currentLanguage][correctAnswerKey].toLowerCase();
+            // Update all elements with data-i18n attributes
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                // Check if the key exists in the current language translations
+                if (currentTranslations[key]) {
+                    // Special handling for elements with 'placeholder' attribute (like input fields)
+                    if (element.tagName === 'INPUT' && element.hasAttribute('placeholder')) {
+                        element.placeholder = currentTranslations[key];
+                    } 
+                    // Special handling for the document's title tag
+                    else if (element.tagName === 'TITLE') {
+                        document.title = currentTranslations[key];
+                    } 
+                    // For all other elements, update their text content
+                    else {
+                        element.textContent = currentTranslations[key];
+                    }
+                }
+            });
 
-            if (userAnswer === correctAnswer) {
-                quizFeedback.textContent = translations[currentLanguage].quizCorrect;
-                quizFeedback.classList.add('text-green');
-                quizFeedback.classList.remove('text-red');
-                quizAnswerInput.classList.add('text-green');
-                quizAnswerInput.classList.remove('text-red');
-                score++;
-            } else {
-                quizFeedback.textContent = translations[currentLanguage].quizIncorrect + translations[currentLanguage][correctAnswerKey] + ".";
-                quizFeedback.classList.add('text-red');
-                quizFeedback.classList.remove('text-green');
-                quizAnswerInput.classList.add('text-red');
-                quizAnswerInput.classList.remove('text-green');
+            // Update specific quiz elements that might change text dynamically
+            // (e.g., the quiz action button, which changes between "Start Quiz", "Next Question", "Retake Quiz")
+            updateQuizActionButtonText(); 
+            // Ensure the quiz question display is updated when language changes
+            if (quizActive && currentQuestionIndex < quizQuestions.length) {
+                quizQuestionDisplay.textContent = currentTranslations[quizQuestions[currentQuestionIndex].qKey];
+            } else if (!quizActive) {
+                quizQuestionDisplay.textContent = currentTranslations.quizQuestion;
             }
 
-            currentQuizQuestionIndex++;
-            // Change button to "Next Question" or "Retake Quiz"
-            if (currentQuizQuestionIndex < quizQuestions.length) {
-                quizActionButton.textContent = translations[currentLanguage].quizNextButton;
-            } else {
-                quizActionButton.textContent = translations[currentLanguage].quizRetakeButton;
-            }
+
+            // Store the selected language in local storage to remember preference
+            localStorage.setItem('selectedLanguage', lang);
         }
 
-        function endQuiz() {
-            quizActive = false;
-            quizQuestionDisplay.textContent = `${translations[currentLanguage].quizCompleted} ${score} ${translations[currentLanguage].quizOutOf} ${quizQuestions.length}.`;
-            quizAnswerInput.style.display = 'none'; // Hide input when quiz is done
-            quizFeedback.textContent = ''; // Clear feedback
-            quizFeedback.classList.remove('text-green', 'text-red');
-            quizActionButton.textContent = translations[currentLanguage].quizRetakeButton;
-        }
+        // --- Initial Language Setup ---
+        // Get the saved language from local storage, or default to English if none is saved
+        const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+        // Set the dropdown selector to the saved or default language
+        languageSelector.value = savedLanguage;
+        // Apply the translations for the initial language when the page loads
+        setLanguage(savedLanguage);
 
-        // NEW FUNCTION: Resets quiz and returns to main page view
-        function goToMainPage() {
-            quizActive = false; // Reset quiz active state
-            currentQuizQuestionIndex = 0; // Reset question index
-            score = 0; // Reset score
-            quizFeedback.textContent = ''; // Clear feedback
-            quizAnswerInput.value = ''; // Clear input
-            quizAnswerInput.classList.remove('text-green', 'text-red');
-            quizFeedback.classList.remove('text-green', 'text-red');
-            quizQuestionDisplay.textContent = ''; // Clear question display
-
-            showAllSections(); // Show all main sections
-            showQuizElements(false); // Hide quiz specific elements
-            quizActionButton.textContent = translations[currentLanguage].quizStartButton; // Reset button text
-            // quizGoBackButton.style.display = 'none'; // This is now handled by showQuizElements(false)
-        }
-
-
-        // --- Event Listeners ---
-
-        darkModeToggle.addEventListener('click', () => {
-            isDarkMode = !isDarkMode;
-            localStorage.setItem('darkMode', isDarkMode);
-            applyTheme();
-        });
-
+        // Listen for changes in the language selector dropdown
         languageSelector.addEventListener('change', (event) => {
+            // When the user selects a new language, call setLanguage with the new value
             setLanguage(event.target.value);
         });
 
-        flashcardElements.forEach(card => {
+
+        // --- Dark Mode Toggle Functionality ---
+        const darkModeToggle = document.getElementById('darkModeToggle');
+
+        // Add a click event listener to the dark mode button
+        darkModeToggle.addEventListener('click', () => {
+            // Toggles the 'dark' class on the <body> element.
+            // CSS rules (in the <style> block) define how the page looks when this class is present.
+            document.body.classList.toggle('dark');
+        });
+
+
+        // --- Flashcard Reveal Functionality ---
+        // Select all elements that have the class 'card' (these are our flashcards)
+        document.querySelectorAll('.card').forEach(card => {
+            // Attach a click event listener to each flashcard
             card.addEventListener('click', () => {
-                card.querySelector('.answer').style.display = card.querySelector('.answer').style.display === 'block' ? 'none' : 'block';
+                // Find the 'answer' span within the clicked flashcard
+                const answer = card.querySelector('.answer');
+                // Toggle the display style of the answer between 'inline' (visible) and 'none' (hidden)
+                if (answer.style.display === 'inline') {
+                    answer.style.display = 'none';
+                } else {
+                    answer.style.display = 'inline';
+                }
             });
         });
 
-        quizActionButton.addEventListener('click', () => {
-            if (!quizActive) { // If quiz is not active, start it
-                startQuiz();
-            } else { // If quiz is active, check the answer or move to next question
-                checkQuizAnswer();
-            }
-        });
 
-        quizGoBackButton.addEventListener('click', goToMainPage); // NEW EVENT LISTENER for the go back button
+        // --- Search Functionality (Filters sections based on input) ---
+        const searchInput = document.getElementById('searchInput');
 
-        searchInput.addEventListener('keyup', (event) => {
-            const searchTerm = event.target.value.toLowerCase();
-
-            // Hide/show sections based on search term
-            const sections = [flashcardsSection, notesSection, quizSection, downloadsSection];
-            sections.forEach(section => {
-                const sectionText = section.textContent.toLowerCase();
-                if (sectionText.includes(searchTerm)) {
+        // Listen for 'input' events, which fire every time the user types or deletes text
+        searchInput.addEventListener('input', () => {
+            // Get the search term, convert to lowercase, and remove extra whitespace
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            // Select all 'section' elements on the page
+            document.querySelectorAll('section').forEach(section => {
+                // If there's a search term, filter the sections
+                if (searchTerm.length > 0) {
+                    // Check if the section's text content (lowercase) includes the search term
+                    if (section.textContent.toLowerCase().includes(searchTerm)) {
+                        section.style.display = 'block'; // Show the section if it matches
+                    } else {
+                        section.style.display = 'none'; // Hide the section if it doesn't match
+                    }
+                } else {
+                    // If the search term is empty, show all sections
                     section.style.display = 'block';
-                } else {
-                    section.style.display = 'none';
                 }
             });
+        });
 
-            // Special handling for quiz section if search is active
-            if (searchTerm.includes('quiz') && !quizActive) {
-                quizSection.style.display = 'block'; // Ensure quiz section is visible if searched
-            } else if (searchTerm.includes('quiz') && quizActive) {
-                // If quiz is active and user searches for quiz, keep only quiz visible
-                hideAllSectionsExceptQuiz();
-            } else if (!searchTerm) { // If search term is empty, show all sections and reset quiz view if necessary
-                if (!quizActive) {
-                    showAllSections();
+
+        // --- Mini Quiz Logic ---
+        
+        /**
+         * Updates the text of the main quiz action button based on the quiz state.
+         */
+        function updateQuizActionButtonText() {
+            const currentLang = languageSelector.value;
+            const currentTranslations = translations[currentLang];
+
+            if (!quizActive) {
+                quizActionButton.textContent = currentTranslations.quizStartButton;
+            } else if (currentQuestionIndex < quizQuestions.length) {
+                quizActionButton.textContent = currentTranslations.quizNextButton;
+            } else {
+                quizActionButton.textContent = currentTranslations.quizRetakeButton;
+            }
+        }
+
+        /**
+         * Displays the current quiz question and manages the input field and feedback area.
+         */
+        function displayCurrentQuizQuestion() {
+            const currentLang = languageSelector.value;
+            const currentTranslations = translations[currentLang];
+
+            if (currentQuestionIndex < quizQuestions.length) {
+                // Display the current question
+                quizQuestionDisplay.textContent = currentTranslations[quizQuestions[currentQuestionIndex].qKey];
+                // Clear input field and feedback
+                quizAnswerInput.value = '';
+                quizFeedback.textContent = '';
+                quizFeedback.className = ''; // Clear feedback styling
+                // Ensure input is enabled
+                quizAnswerInput.disabled = false;
+                quizAnswerInput.style.display = 'block'; // Ensure input is visible
+                quizAnswerInput.placeholder = currentTranslations.quizInputPlaceholder; // Update placeholder
+            } else {
+                // Quiz completed
+                quizQuestionDisplay.textContent = `${currentTranslations.quizCompleted} ${correctAnswersCount} ${currentTranslations.quizOutOf} ${quizQuestions.length}.`;
+                quizAnswerInput.style.display = 'none'; // Hide input field
+                quizAnswerInput.value = ''; // Clear input
+                quizFeedback.textContent = ''; // Clear feedback
+                quizFeedback.className = '';
+                quizActionButton.textContent = currentTranslations.quizRetakeButton; // Change button to Retake Quiz
+                notesSection.style.display = 'block'; // Show notes again after quiz
+            }
+        }
+
+        // Event listener for the dynamic quiz action button
+        quizActionButton.addEventListener('click', () => {
+            const currentLang = languageSelector.value;
+            const currentTranslations = translations[currentLang];
+
+            if (!quizActive) {
+                // If quiz is not active (first click or retake)
+                quizActive = true;
+                currentQuestionIndex = 0; // Reset question index
+                correctAnswersCount = 0;  // Reset score
+                notesSection.style.display = 'none'; // Hide notes when quiz starts
+                displayCurrentQuizQuestion(); // Display the first question
+                updateQuizActionButtonText(); // Update button to "Next Question"
+            } else if (currentQuestionIndex < quizQuestions.length) {
+                // If quiz is active and there are more questions, it means "Submit Answer" or "Next Question"
+                const userAnswer = quizAnswerInput.value.trim().toLowerCase();
+                const correctAnswerText = currentTranslations[quizQuestions[currentQuestionIndex].aKey].toLowerCase();
+
+                if (userAnswer === correctAnswerText) {
+                    quizFeedback.textContent = currentTranslations.quizCorrect;
+                    quizFeedback.className = "text-green";
+                    correctAnswersCount++;
                 } else {
-                    hideAllSectionsExceptQuiz(); // Still hide others if quiz is active
+                    quizFeedback.textContent = `${currentTranslations.quizIncorrect} ${currentTranslations[quizQuestions[currentQuestionIndex].aKey]}.`;
+                    quizFeedback.className = "text-red";
                 }
+
+                currentQuestionIndex++; // Move to the next question
+                setTimeout(() => { // Give a brief moment to see feedback before moving to next question
+                    displayCurrentQuizQuestion();
+                    updateQuizActionButtonText(); // Update button to "Next Question" or "Retake Quiz"
+                }, 1000); // 1 second delay
+            } else {
+                // Quiz has finished, and button is "Retake Quiz"
+                quizActive = false; // Reset quiz state
+                displayCurrentQuizQuestion(); // Will show "Quiz Completed" message
+                updateQuizActionButtonText(); // Will show "Start Quiz"
             }
         });
 
+        // Initialize button text on page load
+        updateQuizActionButtonText();
+        // Set initial quiz question display state (showing the prompt before start)
+        quizQuestionDisplay.textContent = translations[savedLanguage].quizQuestion;
 
-        // --- Initial Setup ---
-        document.addEventListener('DOMContentLoaded', () => {
-            // Set initial language from localStorage or default to 'en'
-            languageSelector.value = currentLanguage;
-            setLanguage(currentLanguage);
-            applyTheme();
-
-            // Initially hide quiz specific elements until quiz starts
-            showQuizElements(false);
-            // Ensure all main sections are visible on load
-            showAllSections();
-        });
     </script>
 </body>
 </html>
